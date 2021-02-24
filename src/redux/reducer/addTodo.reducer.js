@@ -26,9 +26,11 @@ export const addTodo = (state = initState, action) => {
             };
 
         case 'DELETE_TODO':
+            const todos3 = state.todos.filter((todo, i) => i !== action.payload);
+            SessionService().set('todos2', JSON.stringify(todos3));
             return {
                 ...state,
-                todos: state.todos.filter((todo, i) => i !== action.payload)
+                todos: todos3
             };
 
         case 'EDIT_TODO':
@@ -39,15 +41,19 @@ export const addTodo = (state = initState, action) => {
             };
 
         case 'EDIT_ADD_TODO':
+            const todos4 = state.todos.map((todo, i) => i !== action.payload.selected ? todo : action.payload.value);
+            SessionService().set('todos2', JSON.stringify(todos4));
             return {
                 ...state,
-                todos: state.todos.map((todo, i) => i !== action.payload.selected ? todo : action.payload.value),
+                todos: todos4,
                 selected: undefined,
                 text: ''
             };
 
         case 'DELETE_ALL':
-            return { ...state, todos: [], text: '' };
+            const todos5 = [];
+            SessionService().set('todos2', JSON.stringify(todos5));
+            return { ...state, todos: todos5, text: '' };
         default:
             return state;
     }
