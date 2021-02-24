@@ -9,7 +9,7 @@ function TodosList({ todos }) {
             flexDirection: 'column',
             width: '200px',
             margin: '0 auto',
-            height: '300px',
+            height: '200px',
             overflowY: 'auto',
             overflowX: 'hidden'
         }}>

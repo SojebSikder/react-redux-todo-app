@@ -35,6 +35,8 @@ export const addTodo = (state = initState, action) => {
                 selected: undefined,
                 text: ''
             };
+        case 'DELETE_ALL':
+            return { ...state, todos: [] };
         default:
             return state;
     }

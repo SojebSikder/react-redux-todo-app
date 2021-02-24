@@ -22,3 +22,7 @@ export const editAddTodo = (obj) => ({
     type: 'EDIT_ADD_TODO',
     payload: obj
 });
+
+export const deleteAll = () => ({
+    type: 'DELETE_ALL',
+});
