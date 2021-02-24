@@ -1,10 +1,16 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import InputField from './components/InputField';
 import TodosList from './components/TodosList';
-import { deleteAll } from './redux/action/addTodo.action';
+import { deleteAll, persistTodos } from './redux/action/addTodo.action';
 import './styles.css';
 
-function App({ deleteAll }) {
+function App({ deleteAll, persistTodos }) {
+
+  useEffect(() => {
+    persistTodos();
+  }, [persistTodos]);
+
   return (
     <div className="App">
       <h1 style={{ textDecoration: 'underline' }}>Todos App</h1>
@@ -23,7 +29,8 @@ function App({ deleteAll }) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteAll: () => dispatch(deleteAll())
+  deleteAll: () => dispatch(deleteAll()),
+  persistTodos: () => dispatch(persistTodos())
 });
 
 export default connect(null, mapDispatchToProps)(App);

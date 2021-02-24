@@ -1,3 +1,7 @@
+export const persistTodos = () => ({
+    type: 'PERSIST_TODOS',
+});
+
 export const addText = (value) => ({
     type: 'ADD_TEXT',
     payload: value,

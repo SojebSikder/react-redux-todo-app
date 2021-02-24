@@ -16,7 +16,7 @@ export default function SessionService() {
          * @param {*} key 
          */
         get: (key) => {
-            localStorage.getItem(key);
+            return localStorage.getItem(key);
         }
     }
     return self;
