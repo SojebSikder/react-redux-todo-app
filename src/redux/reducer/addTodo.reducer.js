@@ -1,3 +1,5 @@
+import SessionService from "../../services/SessionService";
+
 const initState = {
     todos: [],
     text: '',
@@ -12,9 +14,12 @@ export const addTodo = (state = initState, action) => {
                 text: action.payload
             };
         case 'ADD_TODO':
+            const todos2 = state.todos.concat(action.payload);
+            SessionService().set('todos2', JSON.stringify(todos2));
+
             return {
                 ...state,
-                todos: state.todos.concat(action.payload),
+                todos: todos2,
                 text: ''
             };
         case 'DELETE_TODO':
@@ -36,7 +41,7 @@ export const addTodo = (state = initState, action) => {
                 text: ''
             };
         case 'DELETE_ALL':
-            return { ...state, todos: [] };
+            return { ...state, todos: [], text: '' };
         default:
             return state;
     }
